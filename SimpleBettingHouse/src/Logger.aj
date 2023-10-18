@@ -10,17 +10,29 @@ import com.bettinghouse.*;
 public aspect Logger {
 	File file = new File ("Register.txt");
 	Calendar cal = Calendar.getInstance();
+	User user;
 	
-	pointcut registro() : execution(void signUp()) || execution(void effectiveLogIn(User)) || execution(void effectiveLogOut(User)); 
+	pointcut registro(User user, Person person) : call(* successfulSignUp(User, Person))&& args(user,person); 
 	
-	after(): registro(){
+	after(User user, Person person): registro(user, person){
 		
 		String accion = "";
-		String usuario ="";
-		
-		
-		
+		String nickname ="";
+		/*
+		if(thisJoinPoint.getSignature().getName().equals("succesfulSignUp")){
+			accion= "Registrar Usuario";
+			nickname= ((User)args[1]).getNickname()+"password: ";
+		}
+		*/
+		System.out.println(" Funca " + user.getNickname());
 	}
+		
+		pointcut Logs(User user, Person person) : call(* Log*(User, Person))&& args(user,person);
+		after(User user, Person person): Logs(user, person){
+			System.out.println(" Funca Log " + user.getNickname());
+		}
+		
+	
 	
 	
 	
