@@ -11,11 +11,12 @@ public aspect Logger {
 	File file = new File ("Register.txt");
 	Calendar cal = Calendar.getInstance();
 	
-	pointcut registro(): execution(void signUp()); 
+	pointcut registro() : execution(void signUp()) || execution(void effectiveLogIn(User)) || execution(void effectiveLogOut(User)); 
 	
 	after(): registro(){
-		String accion = "Usuario Registrado";
-		System.out.println(accion);
+		
+		String accion = "";
+		String usuario ="";
 		
 		
 		
