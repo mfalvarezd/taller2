@@ -1,1 +1,1 @@
-Usuario registrado: [nickname = oli, password = 123] Fecha: [ 2023-10-18 20:28:19] 
+Usuario registrado: [nickname = oli, password = 123] Fecha: [ 2023-10-18 20:28:19] Usuario registrado: [nickname = moi, password = 1234] Fecha: [ 2023-10-18 20:38:44] 

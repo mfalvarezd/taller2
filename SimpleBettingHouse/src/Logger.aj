@@ -13,12 +13,15 @@ public aspect Logger {
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	Calendar cal = Calendar.getInstance();
 	User user;
+	String mensaje;
 	
 	pointcut registro(User user, Person person) : call(* successfulSignUp(User, Person))&& args(user,person); 
 	
 	after(User user, Person person): registro(user, person){
+		mensaje= "Usuario registrado: ";
 		System.out.println("Usuario creado y registrado exitosamente!");
-		EscribirAr(user, file);
+		System.out.println("Usuario registrado: ["+ user.toString()+"] "+ "Fecha: [ "+ dateFormat.format(cal.getTime())+"] ");
+		EscribirAr(user, file, mensaje);
 	}
 	
 	
@@ -34,11 +37,11 @@ public aspect Logger {
 	
 	
 	
-	public void EscribirAr(User user, File file) {
+	public void EscribirAr(User user, File file, String mensaje) {
 		try {
 			FileWriter fileWriter = new FileWriter (file, true);
 			
-			fileWriter.write("Usuario registrado: ["+ user.toString()+"] "+ "Fecha: [ "+ dateFormat.format(cal.getTime())+"] ");
+			fileWriter.write(mensaje+"["+ user.toString()+"] "+ "Fecha: [ "+ dateFormat.format(cal.getTime())+"] \n");
 			fileWriter.close();
 			
 		}catch (IOException e) {
