@@ -1,0 +1,2 @@
+Sesión iniciada por usuario: [nickname = mfalvarez, password = 123] Fecha: [ 2023-10-18 22:51:11] 
+Sesión cerrada por usuario: [nickname = mfalvarez, password = 123] Fecha: [ 2023-10-18 22:51:11] 
