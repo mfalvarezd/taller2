@@ -37,18 +37,7 @@ public aspect Logger {
 		EscribirAr(user, logfile, mensaje);				
 		}
 		
-	
-	
-	
-	//Esto aún está en prueba, no sé como es que podemos llamar a ambos a la vez
-	pointcut Logs(User user, Person person) : call(* Log*(User, Person))&& args(user,person);
-		after(User user, Person person): Logs(user, person){
-			System.out.println(" Funca Log " + user.getNickname());
-		}
-		
-	
-	
-	
+
 	
 	
 	public void EscribirAr(User user, File file, String mensaje) {
