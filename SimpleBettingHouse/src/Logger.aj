@@ -24,7 +24,7 @@ public aspect Logger {
 		EscribirAr(user, file, mensaje);
 	}
 	pointcut logIn(User user) : call(* effectiveLogIn(User))&& args(user);			
-	// baidal 1 pointcut loggedOut(User user) : call(* effectiveLogOut(User))&& args(user);		
+	pointcut loggedOut(User user) : call(* effectiveLogOut(User))&& args(user);		
 	after(User user): (logIn(user) || loggedOut(user)){		
 		if(thisJoinPointStaticPart.getSignature().getName().equals("effectiveLogIn")) {
 						mensaje= "Sesión iniciada por usuario: ";
