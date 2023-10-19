@@ -10,6 +10,7 @@ import com.bettinghouse.*;
 
 public aspect Logger {
 	File file = new File ("Register.txt");
+	File logfile = new File ("Log.txt");
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	Calendar cal = Calendar.getInstance();
 	User user;
@@ -25,14 +26,16 @@ public aspect Logger {
 	}
 	pointcut logIn(User user) : call(* effectiveLogIn(User))&& args(user);			
 	pointcut loggedOut(User user) : call(* effectiveLogOut(User))&& args(user);		
-	after(User user): (logIn(user) || loggedOut(user)){		
+	after(User user): (logIn(user) || loggedOut(user)){	
+		
 		if(thisJoinPointStaticPart.getSignature().getName().equals("effectiveLogIn")) {
-						mensaje= "Sesión iniciada por usuario: ";
+					mensaje= "Sesión iniciada por usuario: ";
 		}else if(thisJoinPointStaticPart.getSignature().getName().equals("effectiveLogOut")) {
 					mensaje= "Sesión cerrada por usuario: ";
 		}
 		System.out.println(mensaje+"["+ user.toString()+"] "+ "Fecha: [ "+ dateFormat.format(cal.getTime())+"] ");		
-		EscribirAr(user, logfile, mensaje);				}
+		EscribirAr(user, logfile, mensaje);				
+		}
 		
 	
 	
