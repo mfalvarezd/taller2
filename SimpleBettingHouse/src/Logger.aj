@@ -28,7 +28,9 @@ public aspect Logger {
 	after(User user): (logIn(user) || loggedOut(user)){		
 		if(thisJoinPointStaticPart.getSignature().getName().equals("effectiveLogIn")) {
 						mensaje= "Sesión iniciada por usuario: ";
-		}//baidal 2
+		}else if(thisJoinPointStaticPart.getSignature().getName().equals("effectiveLogOut")) {
+					mensaje= "Sesión cerrada por usuario: ";
+		}
 		System.out.println(mensaje+"["+ user.toString()+"] "+ "Fecha: [ "+ dateFormat.format(cal.getTime())+"] ");		
 		EscribirAr(user, logfile, mensaje);				}
 		
